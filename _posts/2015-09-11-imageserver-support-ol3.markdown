@@ -12,7 +12,7 @@ custom_js_lib:
 custom_js: 
 - iipsource
 ---
-[OpenLayers 3](http://openlayers.org/) is a create library. It is mainly used for the creating of web mapping applications and thereby does a create job. Beside that it could also be used as a frontend library for multiple imageserver protocols. The following demos shows the support of the Zoomify-Procole, the Internet Image Protocol, the Web Map Service Protocol and the International Image Interoperabilitiy Framework.
+[OpenLayers 3](http://openlayers.org/) is a great library. It is mainly used for the creating of web mapping applications and thereby does a great job. Beside that it could also be used as a frontend library for multiple imageserver protocols. The following demos shows the support of the Zoomify-Protocol, the Internet Image Protocol, the Web Map Service Protocol and the International Image Interoperabilitiy Framework Protocol.
 
 
 <div class="parent-map-container">	
