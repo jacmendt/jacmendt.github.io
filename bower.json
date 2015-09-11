@@ -1,0 +1,15 @@
+{
+  "name": "jacmendt-blog",
+  "description": "",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.1.1" 
+  },
+  "devDependencies": {
+    "closure-library": "https://github.com/google/closure-library.git",
+    "openlayers": "https://github.com/openlayers/ol3.git",
+    "iiifviewer": "https://github.com/klokantech/iiifviewer.git"
+  }
+}
