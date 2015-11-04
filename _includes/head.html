@@ -55,7 +55,26 @@
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-  
+
+
+	{% if page.head %}
+		{% for entry in page.head_css %}
+			{{ entry }}
+		{% endfor %}
+	{% endif %}
+
+	{% if page.head_css %}
+		{% for entry in page.head_css %}
+			<link rel="stylesheet" href="{{ entry }}">
+		{% endfor %}
+	{% endif %}
+
+	{% if page.head_js %}
+		{% for entry in page.head_js %}
+			<script src="{{ entry }}" ></script>
+		{% endfor %}
+	{% endif %}
+
   {% if page.custom_css %}
   	{% for stylesheet in page.custom_css %}
   	<link rel="stylesheet" href="/assets/css/{{ stylesheet }}.css" media="screen" type="text/css">
@@ -68,11 +87,11 @@
   	{% endfor %}
   {% endif %}
 
-  {% if page.custom_js_lib %}
-  	{% for js_file in page.custom_js_lib %}
-	<script src='/assets/lib/{{ js_file }}.js' type="text/javascript"></script>
-	{% endfor %}
-  {% endif %}
+	{% if page.custom_js_lib %}
+		{% for js_file in page.custom_js_lib %}
+			<script src='/assets/lib/{{ js_file }}.js' type="text/javascript"></script>
+		{% endfor %}
+	{% endif %}
 
   {% if page.custom_js %}
   	{% for js_file in page.custom_js %}

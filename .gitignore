@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 
 # Compiled site
 _site

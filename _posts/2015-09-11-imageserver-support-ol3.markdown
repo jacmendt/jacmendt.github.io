@@ -4,12 +4,12 @@ title:  "Support of selected imageserver protocols in OpenLayers 3"
 date:   2015-09-11 14:07:26
 categories: openlayers
 custom_css_posts: 2015-09-11-imageserver-support-ol3
-custom_js_lib: 
+custom_js_lib:
 - jquery
 - ol-debug
 - iiifgrid
 - iiifsource
-custom_js: 
+custom_js:
 - iipsource
 ---
 [OpenLayers 3](http://openlayers.org/) is a create library. It is mainly used for the creating of web mapping applications and thereby does a create job. Beside that it could also be used as a frontend library for multiple imageserver protocols. The following demos shows the support of the Zoomify-Procole, the Internet Image Protocol, the Web Map Service Protocol and the International Image Interoperabilitiy Framework.
