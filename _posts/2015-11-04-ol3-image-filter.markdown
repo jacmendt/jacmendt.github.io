@@ -17,8 +17,9 @@ custom_css_posts:
 
 ---
 The following post shows the usage of OpenLayers 3 together with the <a href="https://github.com/slub/webgl-image-filter">glif</a>
-image filter library. To see how it function check the <a href="/src/posts/2015-11-04-ol3-image-filter.js">source</a>. The
-filter can be chained.
+image filter library. To see how it function check the <a href="/src/posts/2015-11-04-ol3-image-filter.js">source</a>. The library
+is based in big parts on the <a href="https://github.com/phoboslab/WebGLImageFilter">WebGLImageFilter</a> library by Dominic Szablewski
+and offers multiple image filters. It can be easily couple with OpenLayers 3.
 
 <section>
     <div id="map"></div>
