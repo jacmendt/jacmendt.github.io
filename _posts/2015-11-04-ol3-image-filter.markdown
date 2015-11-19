@@ -2,7 +2,8 @@
 layout: post
 title:  "WebGL image filter with ol3"
 date:   2015-11-04 18:08:26
-categories: openlayers
+categories:
+- openlayers
 head_css:
 - https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css
 - https://cdnjs.cloudflare.com/ajax/libs/ol3/3.10.1/ol.css

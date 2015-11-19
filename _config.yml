@@ -30,10 +30,12 @@ jekyll-archives:
   enabled: 
     - categories
     - tags
+    - year
   layout: 'archive'
   permalinks:
     category: '/category/:name/'
     tag: '/tag/:name/'
+    year: '/archives/:name/'
 
 # Disqus comments
 disqus_shortname: bencentra

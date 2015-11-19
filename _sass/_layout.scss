@@ -220,6 +220,10 @@ pre code.hljs {
 			text-align: right;
 			font-size: 0.9em;
 		}
+
+		.post-categories.left {
+			text-align: left;
+		}
 	}
 	.pagination {
 		padding-top: 2em;
@@ -316,6 +320,10 @@ pre code.hljs {
 			.post-date {
 				color: $medium-gray;
 			}
+			h4 {
+				width: 100%;
+				margin-bottom: 0;
+			}
 		}
 		.profile {
 			max-width: 320px;
@@ -333,6 +341,13 @@ pre code.hljs {
 	padding: 1em 1em 2em 1em;
 	background-color: $highlight-color;
 	color: $white;
+
+	&.stick-to-bottom {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+
 	a {
 	  color: $link-color;
 	  &:active,
@@ -408,3 +423,15 @@ pre code.hljs {
 		}
 	}
 }
+
+/*
+ * Stick footer to bottom
+ */
+.stick-footer-to-bottom {
+	.site-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+}
+

@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Support of selected imageserver protocols in OpenLayers 3"
+title:  "Support of selected imageserver protocols in ol3"
 date:   2015-09-11 14:07:26
 categories: openlayers
+year: 2015
 head_css:
 - /css/posts/2015-09-11-imageserver-support-ol3.css
 head_js:
