@@ -6,14 +6,12 @@ categories: openlayers
 head_css:
 - https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css
 - https://cdnjs.cloudflare.com/ajax/libs/ol3/3.10.1/ol.css
+- /css/posts/2015-11-04-ol3-image-filter.css
 head_js:
 - https://code.jquery.com/jquery-1.11.3.min.js
 - https://code.jquery.com/ui/1.11.3/jquery-ui.min.js
 - https://cdnjs.cloudflare.com/ajax/libs/ol3/3.10.1/ol.min.js
-custom_js_lib:
-- glif.min
-custom_css_posts:
-- 2015-11-04-ol3-image-filter
+- /assets/lib/glif.min.js
 
 ---
 The following post shows the usage of OpenLayers 3 together with the <a href="https://github.com/slub/webgl-image-filter">glif</a>
