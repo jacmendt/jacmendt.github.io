@@ -13,7 +13,7 @@ subtitle: ""
 email: jacobmendt@googlemail.com
 name: Jacob Mendt
 description: > 
-  This blog is based on jekyll and the centrarium template by @bencentra.
+  This is the blog of jacmendt. I try to regulary post here topics and experience regarding my work.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://localhost.com" # the base hostname & protocol for your site

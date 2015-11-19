@@ -5,14 +5,18 @@ permalink: /blog/
 ---
 
 <div class="wrapper">
-	<div class="page">
 
+	<h1 class="page-title">
+		Blog
+	</h1>
+
+	<div class="page">
 
 		<article class="post-content">
 
 			{% for category in site.categories %}
 			{% capture cat %}{{ category | first }}{% endcapture %}
-			<h2>{{ cat | capitalize }}</h2>
+			<h2>Category: {{ cat | capitalize }}</h2>
 			{% for desc in site.descriptions %}
 			{% if desc.cat == cat %}
 			<p class="desc"><em>{{ desc.desc }}</em></p>

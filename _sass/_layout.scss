@@ -17,6 +17,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
+	//background-color: #F5F5F5;
 }
 
 ol.default {
@@ -100,7 +101,7 @@ pre code.hljs {
 *	Header
 */
 .navigation {
-	box-shadow: 0 2px $highlight-color;
+	//box-shadow: 0 2px $highlight-color;
 	padding: 0 1em;
 	margin: 0;
 	/*
@@ -190,10 +191,25 @@ pre code.hljs {
   }
 }
 
+.page-divider {
+	&.under-top {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}
+.page-title {
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 3.3em;
+}
+
 /*
 *	Body
 */
 .page-content {
+
+	margin-bottom: 50px;
+
 	.wrapper {
 		@include outer-container;
 		padding: 1em;
@@ -304,6 +320,14 @@ pre code.hljs {
 	*	Pages
 	*/
 	.page {
+		.post-content {
+			h2 {
+				margin-bottom: 0px;
+			}
+			p {
+				margin-top: -10px;
+			}
+		}
 		.post-header {
 			padding: 0.5em 1em 1em 1em;
 			text-align: center;
@@ -337,73 +361,28 @@ pre code.hljs {
 *	Footer
 */
 .site-footer {
-	$link-color: $white;
 	padding: 1em 1em 2em 1em;
-	background-color: $highlight-color;
-	color: $white;
 
-	&.stick-to-bottom {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-	}
-
-	a {
-	  color: $link-color;
-	  &:active,
-	  &:focus,
-	  &:hover {
-	    color: darken($link-color, 10%);
-	  }
-	  &:active,
-	  &:focus {
-	    outline: none;
-	  }
-	}
 	.wrapper {
 		@include outer-container;
-	}
-	.footer-heading {
+		text-align: center;
 
-	}
-	/*
-	*	Site Navigation (left)
-	*/
-	.site-navigation {
-		@include span-columns(12);
-		@include media ($mobile) {
-			@include span-columns(6);
-		}
-		@include media ($tablet) {
-			@include span-columns(4);
-		}
-		font-size: 0.9em;
-		ul {
-			@extend %default-ul;
-		}
-	}
-	/*
-	*	Contact Info (center)
-	*/
-	.site-contact {
-		margin-top: 1em;
-		@include span-columns(12);
-		@include media ($mobile) {
-			@include span-columns(6);
-			margin-top: 0;
-			margin-right: 0;
-		}
-		@include media ($tablet) {
-			@include span-columns(4);
-			margin-top: 0;
-		}
-		font-size: 0.9em;
-		i {
-			width: 1.25em;
+		div {
 			text-align: center;
+			display: inline-block;
 		}
+	}
+
+
+	.contact {
 		ul {
 			@extend %default-ul;
+			li {
+				float: left;
+				margin-top: 2px;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
 		}
 	}
 	/*
@@ -424,14 +403,8 @@ pre code.hljs {
 	}
 }
 
-/*
- * Stick footer to bottom
- */
-.stick-footer-to-bottom {
-	.site-footer {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
+.about {
+	.post-content {
+		text-align: justify;
 	}
 }
-

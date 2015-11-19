@@ -3,15 +3,22 @@
 
   {% include head.html %}
 
-  <body class="stick-footer-to-bottom">
+  <body>
 
     {% include header.html %}
+
+		<span class="page-divider under-top"></span>
 
     <div class="page-content">
 
         {{ content }}
 
     </div>
+
+		<span class="page-divider">
+			<span class="one"></span>
+			<span class="two"></span>
+		</span>
 
     {% include footer.html %}
 
