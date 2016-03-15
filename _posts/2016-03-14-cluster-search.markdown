@@ -11,45 +11,42 @@ head_css:
 
 ---
 In the 2016, using and displaying large amounts (>10.000) of point data in web browsers shouldn't be a hard task. This was
-what I thought when stumbling over this topic in one of my projects. But when I digged deeper into this topic I found out,
-that there are still a lot of pitfalls and shortages when displaying large amounts of point data in web applications. The
- article therefor discusses problems as well as solutions for this issue. It is a collection of insights and
- ideas regarding this topics and also when the examples are mainly using tools like <a href="http://leafletjs.com/">Leaflet</a>
- and <a href="https://www.elastic.co">ElasticSearch</a> the assertions are widely the same for other tools.
+what I thought when stumbling over this topic in one of my projects. But as I digged deeper into this subject I found out,
+that there are still a lot of constraints and pitfalls when displaying large amounts of point data in web applications. Hence, this
+ article discusses problems as well as solutions for this issue. Aththough the examples mainly use tools like
+ <a href="http://leafletjs.com/">Leaflet</a>
+ and <a href="https://www.elastic.co">ElasticSearch</a> the assertions largely apply to other tools, too.
 
 <section>
     <h2>The story</h2>
     <p>
-        I stumbled over this topic when I was developing a web-based map search application for a sensor project. In the project, we had something
+        I stumbled over this topic when I was developing a web-based map search application for a sensor project. In the project, we had 
         around 300.000 sensors distributed over the whole world. Our goal was to develop a map based search application, which allows
-        a user to pan through a map and search for sensors in it.
+        a user to pan and zoom on a map and perform a search for sensor locations.
     </p>
     <p>
-        We were already familiar with developing web-based map search applications, so we set up an <a href="https://www.elastic.co">
+        Since we were already familiar with developing web-based map search applications, so we set up an <a href="https://www.elastic.co">
         ElasticSearch</a>, pushed our sensor data to it and build an simple <a href="http://leafletjs.com/">Leaflet</a> application
-        on top of it. In simply terms, this was the result:
+        on top of it. The result looked like this:
     </p>
     <img src="/assets/images/marker_problem.jpeg" class="image" />
     <p>
         The whole workflow wasn't too hard to implement, but it leads us directly to the first problem when displaying large
-         amounts of point data on top of a map: The <b>Marker-/Point-Problem</b>. It simply is information overload. Who needs
-         2.000 markers on the screen. Probably the only thinkable use case is, that you want to impress somebody with
-         your amount of data.
+         amounts of point data on top of a map: The <b>Marker-/Point-Problem</b>. What you can see is a visual overload - no one can distinguish 2.000 location markers on a screen. It might help if you want you want to impress somebody with
+         the sheer number of data point or your inability to handle them properly.
     </p>
     <p>
-        The normal way to solve this problem is to use Aggregation resp. Clusters. In the <a href="http://leafletjs.com/">Leaflet</a>
-        universe, you can therefor use the popular <a href="https://github.com/Leaflet/Leaflet.markercluster">Leaflet.markercluster</a>
-        plugin.
+        The usual way to solve this problem is to use aggregation resp. point clustering. In the <a href="http://leafletjs.com/">Leaflet</a>
+        universe, you can use the popular <a href="https://github.com/Leaflet/Leaflet.markercluster">Leaflet.markercluster</a>
+        plugin for this purpose.
     </p>
     <a href="http://leaflet.github.io/Leaflet.markercluster/example/marker-clustering-realworld.388.html">
         <img src="/assets/images/cluster_layer.jpeg" class="image" />
     </a>
     <p>
         It performs a client-side clustering of your data and has a couple of nice-to-have features, like spidering and
-        animated clusters. Spidering allows you to click on a cluster on a higher zoom level to expand data like a spiderweb to
-        better see the actual raw data. Animation means that the dissolution and aggregation of the clusters is accompanied
-        by a smooth transition of the cluster points. For displaying clusters on top of maps there are of course more approaches.
-        An extensive overview about them is given in the article <a href="http://blog.cartodb.com/stacking-chips-a-map-hack/">
+        animated clusters. With you to click on a cluster on a higher zoom level spidering expands the cluster center to a spiderweb that shows the all the original markers. With animated clusters there is a smooth transition between coarser and finer cluster points as you zomm in and out. For displaying clusters on maps there are of course more approaches.
+        An extended overview about them is given in the article <a href="http://blog.cartodb.com/stacking-chips-a-map-hack/">
         "Stacking Chips - Showing Many Points that Share the Same Location"</a> by @cartodb.
     </p>
 </section>
@@ -57,18 +54,18 @@ that there are still a lot of pitfalls and shortages when displaying large amoun
 <section>
     <h2>Clustering - the shortages</h2>
     <p>
-        For a lot of applications the described approaches would already be enough. In our case it wasn't, which was
-        also the reason why I wrote this article.
+        For a lot of applications the described approaches would already suffice. In our case it wasn't, which was
+        the primary reason for writing this article.
     </p>
-    <h3>To much traffic</h3>
+    <h3>Too much traffic</h3>
     <p>
-        The first problem pertains the amount of data transferred through the network. For the examples showed above, I
-        used a data record comprising 2.000 sensors. The records only contain the sensor <i>location</i> plus some further
-        information like <i>type</i> or <i>id</i>. This is not much information, but it already results in a file size
-        around 500 KB. Now imaging we had to push all our 300.000 sensor records to the client. This would mean we had to push
-        something around 70 MB through the wire, what is definitely to much, especially if you consider mobile clients.
+        The first problem pertains to the amount of data transferred over the network. For the above examples, I
+        used a sample of 2.000 sensor records. The records only contain the sensor <i>location</i> plus some further
+        information like <i>type</i> or <i>id</i>. This may not be a lot of data, but it already produces a file size
+        around 500 KB. Now imagine we had to push all our 300.000 sensor records to the client. We would have to send
+        roughly 70 MB over the wire, what is definitely to much, especially for mobile clients.
     <img src="/assets/images/sensors_germany_2000-min.png" class="image" />
-        At this point we realize, that client-side clustering isn't the perfect solution for our use case. But luckily, we use
+        At this point we realized, that client-side clustering isn't the perfect solution for our use case. But luckily, we can use
          <a href="https://www.elastic.co">ElasticSearch</a>, which offers by default (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html">GeoHash grid Aggregation</a>)
          and through third party plugins (<a href="https://github.com/triforkams/geohash-facet">Geohash Facet Plugin</a>,<a href="https://github.com/zenobase/geocluster-facet">Geo Cluster Facet Plugin</a>, etc.)
          some ways for performing server-side clustering. Server-side clustering gives us the opportunity, to fetch at lower
