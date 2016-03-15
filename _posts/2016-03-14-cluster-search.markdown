@@ -64,9 +64,7 @@ that there are still a lot of constraints and pitfalls when displaying large amo
         information like <i>type</i> or <i>id</i>. This may not be a lot of data, but it already produces a file size
         around 500 KB. Now imagine we had to push all our 300.000 sensor records to the client. We would have to send
         roughly 70 MB over the wire, what is definitely to much, especially for mobile clients.
-        
-    <img src="/assets/images/sensors_germany_2000-min.png" class="image" />
-        
+        <img src="/assets/images/sensors_germany_2000-min.png" class="image" />
         At this point we realized, that client-side clustering isn't the perfect solution for our use case. But luckily, we can perform 
          server-side clustering with <a href="https://www.elastic.co">ElasticSearch</a>, which offers <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html">GeoHash grid Aggregation</a> by default
          and <a href="https://github.com/triforkams/geohash-facet">Geohash Facet Plugin</a>,<a href="https://github.com/zenobase/geocluster-facet">Geo Cluster Facet Plugin</a>, etc. by third party plugins. With server-side clustering we can fetch cluster- resp. aggregated-data at lower zoom levels, and raw data on higher zoom levels. This approach cuts down the data volume dramatically. It saves network bandwidth and decreases client side rendering efforts.
