@@ -52,7 +52,7 @@ that there are still a lot of constraints and pitfalls when displaying large amo
 </section>
 
 <section>
-    <h2>Clustering - the shortages</h2>
+    <h2>Clustering - the shortcomings</h2>
     <p>
         For a lot of applications the described approaches would already suffice. In our case it wasn't, which was
         the primary reason for writing this article.
@@ -64,33 +64,32 @@ that there are still a lot of constraints and pitfalls when displaying large amo
         information like <i>type</i> or <i>id</i>. This may not be a lot of data, but it already produces a file size
         around 500 KB. Now imagine we had to push all our 300.000 sensor records to the client. We would have to send
         roughly 70 MB over the wire, what is definitely to much, especially for mobile clients.
+        
     <img src="/assets/images/sensors_germany_2000-min.png" class="image" />
-        At this point we realized, that client-side clustering isn't the perfect solution for our use case. But luckily, we can use
-         <a href="https://www.elastic.co">ElasticSearch</a>, which offers by default (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html">GeoHash grid Aggregation</a>)
-         and through third party plugins (<a href="https://github.com/triforkams/geohash-facet">Geohash Facet Plugin</a>,<a href="https://github.com/zenobase/geocluster-facet">Geo Cluster Facet Plugin</a>, etc.)
-         some ways for performing server-side clustering. Server-side clustering gives us the opportunity, to fetch at lower
-          zoom levels, only cluster- resp. aggregated-data, while we use the raw data on higher zoom levels. Through this
-          approach we can drastically reduce the amount of data transferred over the network and rendered by the client.
+        
+        At this point we realized, that client-side clustering isn't the perfect solution for our use case. But luckily, we can perform 
+         server-side clustering with <a href="https://www.elastic.co">ElasticSearch</a>, which offers <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html">GeoHash grid Aggregation</a> by default
+         and <a href="https://github.com/triforkams/geohash-facet">Geohash Facet Plugin</a>,<a href="https://github.com/zenobase/geocluster-facet">Geo Cluster Facet Plugin</a>, etc. by third party plugins. With server-side clustering we can fetch cluster- resp. aggregated-data at lower zoom levels, and raw data on higher zoom levels. This approach cuts down the data volume dramatically. It saves network bandwidth and decreases client side rendering efforts.
     </p>
 
     <h3>Creating clusters</h3>
     <p>
-        But the use of server-side clustering leads us directly into the next trap, which I call the <b>Cluster-Pattern-Problem</b>.
+        Unfortunately server-side clustering leads us directly into the next trap, which I call the <b>Grid-Pattern-Problem</b>.
         If you look closer at a response of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html">
         GeoHash grid Aggregation</a> requests, you recognize the grid pattern in the response data:
     </p>
     <img src="/assets/images/geohash_grid.jpeg" class="image" />
     <p>
-        This is an unsatisfying solution. It doesn't give us a good impression about the real distribution of the
-         sensor data, because it focuses on the GeoHash grid structure instead on the data distribution pattern. An alternative
-         would be using of weight based clustering algorithms. <a href="https://www.elastic.co">ElasticSearch</a>
+        It results in an unaesthetic visualization which follows on the GeoHash grid structure and not the real distribution of the
+         sensor locations An alternative
+         are weight based clustering algorithms. <a href="https://www.elastic.co">ElasticSearch</a>
          supports this through different plugins like <a href="https://github.com/triforkams/geohash-facet">Geohash Facet Plugin</a>
          or <a href="https://github.com/zenobase/geocluster-facet">Geo Cluster Facet Plugin</a>. But this leads us to the
-         next problems, which I call the <b>Cluster Localization Problem</b> and the <b>Cluster Dissolution Problem</b> and
+         <b>Cluster Localization Problem</b> and the <b>Cluster Dissolution Problem</b> and
          which are described in the pictures below.
     <img src="/assets/images/cluster_zoom-min.png" class="image" />
     <p>
-        The map on the left side shows a cluster which is placed in the middle of the pacific. It says that there are 904
+        The map on the left side shows a cluster which is placed in the middle of the pacific. It gives the impression that there are 904
         sensors in the Philippine Sea. Is that true? Of course not and there are also not only 2 sensors in Australia. But the
         relying on simple weight based algorithm leads us to this kind of localization problem. In simple words, the clusters can
         appear everywhere, regardless of whether it make sense or not.
