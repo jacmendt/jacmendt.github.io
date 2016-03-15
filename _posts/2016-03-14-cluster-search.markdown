@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "The point cluster search problem"
+title:  "Displaying point clusters - The Pitfalls"
 date:   2016-03-14 13:00:00
+author: Jacob Mendt
 categories:
 - cluster-search
 - gis

@@ -2,6 +2,7 @@
 layout: post
 title:  "WebGL image filter with ol3"
 date:   2015-11-04 18:08:26
+author: Jacob Mendt
 categories:
 - openlayers
 head_css:
