@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "IDW Interpolations with IDW and OL3"
+date:   2016-09-09 16:00:00
+author: Jacob Mendt
+categories:
+- webgl
+- idw
+head_css:
+- https://cdnjs.cloudflare.com/ajax/libs/ol3/3.17.1/ol.css
+- /assets/lib/ionicons/css/ionicons.min.css
+- /css/posts/2016-09-09-webgl-idw.css
+head_js:
+- https://code.jquery.com/jquery-2.2.3.min.js
+- https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/ol3/3.17.1/ol.js
+- /assets/lib/csvToArray.v2.1.min.js
+- /assets/lib/magl.min.js
+---
+
+ This application is a small demonstrator of how to calculate IDW interpolations in the browser with webgl and display it on top of an openlayers map. This is ongoing work and if you are interested in this topic do not hesitate to <a href="mailto:jacobmendt@googlemail.de">contact me</a>.
+
+
+<section>
+    <div id="map" class="map">
+        <div class="timeseries-play">
+             <span class="timestamp" id="actual-timeslice"></span>
+             <span class="count" id="feature-count"></span>
+             <button type="button" class="btn btn-default" aria-label="Play" id="start-animation">
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+             </button>
+             <button type="button" class="btn btn-default" aria-label="Pause" id="pause-animation">
+                <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+             </button>
+             <button type="button" class="btn btn-default" aria-label="Stop" id="stop-animation">
+                <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+             </button>
+        </div>
+    </div>
+    <div class="legend sidebox">
+        <h4>Data from the <a href="http://www.dwd.de/">Deutscher Wetterdienst</a></h4>
+        <div class="list-group" id="data-record-chooser"></div>
+    </div>
+</section>
+
+<script src='/src/posts/2016-09-09-webgl-idw.js' type="text/javascript"></script>
+<script>
+    var map = loadMapObj('map');
+    addDataChooser('data-record-chooser', map);
+    addAnimationBehavior(map, 'start-animation', 'pause-animation', 'stop-animation');
+</script>
