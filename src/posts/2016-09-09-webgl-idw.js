@@ -319,12 +319,12 @@ var loadMapObj = function(mapId) {
         ],
         layers: [
             new ol.layer.Tile({
-                source: new ol.source.OSM()
-                // source: new ol.source.XYZ({
-                //     attributions: ['Map data &copy; <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox © OpenStreetMap</a>'],
-                //     url: 'https://api.tiles.mapbox.com/v4/jacmendt.n9i4n2f3/{z}/{x}/{y}.png?access_token=pk' +
-                //         '.eyJ1IjoiamFjbWVuZHQiLCJhIjoiZTYwNmU3YWU2YmI2YTIyODUyZWIyM2E2NTA1NmY0YTYifQ.yDQhDJ8foa7nIifwqo3GKQ'
-                // })
+                //source: new ol.source.OSM()
+                source: new ol.source.XYZ({
+                    attributions: ['Map data &copy; <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox © OpenStreetMap</a>'],
+                    url: 'https://api.tiles.mapbox.com/v4/jacmendt.n9i4n2f3/{z}/{x}/{y}.png?access_token=pk' +
+                        '.eyJ1IjoiamFjbWVuZHQiLCJhIjoiZTYwNmU3YWU2YmI2YTIyODUyZWIyM2E2NTA1NmY0YTYifQ.yDQhDJ8foa7nIifwqo3GKQ'
+                })
             }),
             new ol.layer.Vector({
                 style: function(feature) {
