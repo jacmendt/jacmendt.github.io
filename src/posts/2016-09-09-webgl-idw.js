@@ -92,6 +92,7 @@ var addIDWBehavior = function(map, dataset) {
 
     var canvas;
     if (window['IDW_PROGRAM'].canvas === undefined) {
+    	console.log(map.getSize())
         canvas = magl.olhelper.addOverlayCanvas(map);
     } else {
         canvas = window['IDW_PROGRAM'].canvas;
@@ -472,6 +473,19 @@ var loadMapObj = function(mapId) {
         }
 
     });
+
+		map.on('change:size', function(event) {
+				if (window['IDW_PROGRAM'].canvas !== undefined) {
+						$(window['IDW_PROGRAM'].canvas).remove();
+						window['IDW_PROGRAM'].canvas = undefined;
+				}
+
+				if ($('.list-group-item-info')[0] !== undefined) {
+						$('.list-group-item-info').trigger('click');
+				} else {
+						$('#steam_pressure').trigger('click');
+				}
+		});
 
     return map;
 };
