@@ -49,9 +49,7 @@ that there are still a lot of constraints and pitfalls when displaying large amo
         An extended overview about them is given in the article <a href="http://blog.cartodb.com/stacking-chips-a-map-hack/">
         "Stacking Chips - Showing Many Points that Share the Same Location"</a> by @cartodb.
     </p>
-</section>
 
-<section>
     <h2>Clustering - the shortcomings</h2>
     <p>
         For a lot of applications the described approaches would already suffice. In our case it wasn't, which was
@@ -134,9 +132,9 @@ server-side clustering with <a href="https://www.elastic.co">ElasticSearch</a>, 
     <p>
         I will work through these items and try to do some further research in the near future.
     </p>
-</section>
 
-<section>
+
+
     <h2>Conclusion</h2>
     <p>
         The goal of this article was to give a small overview about shortcomings of spatial clustering approaches in March 2016.
