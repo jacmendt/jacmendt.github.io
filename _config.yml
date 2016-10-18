@@ -14,9 +14,8 @@ email: jacobmendt@googlemail.com
 name: Jacob Mendt
 description: > 
   This is the blog of jacmendt. I try to regulary post here topics and experience regarding my work.
-
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://localhost.com" # the base hostname & protocol for your site
+url: "" # the base hostname & protocol for your site
 cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 
@@ -38,7 +37,7 @@ jekyll-archives:
     year: '/archives/:name/'
 
 # Disqus comments
-disqus_shortname: jacmendt.github.io
+disqus_shortname: jacmendt-github-io
 
 # Google analytics
 # ga_tracking_id: "UA-XXXX-1"
